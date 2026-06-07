@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git pull*)",
+      "Bash(git remote*)",
+      "Bash(git log*)",
+      "Bash(git check-ignore*)",
+      "Bash(C:\\Users\\User\\.local\\bin\\python3.14.exe generate_report.py*)"
+    ]
+  }
+}
