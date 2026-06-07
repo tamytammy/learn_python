@@ -1,0 +1,88 @@
+# ============================================================
+# 系統與編輯器暫存
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code 本地設定（workspace 設定可加入，但 local settings 不行）
+.vscode/settings.json
+.vscode/*.code-workspace
+
+# ============================================================
+# Claude Code 本地設定（重要！含權限與本機路徑，不推上 GitHub）
+# ============================================================
+.claude/settings.local.json
+.claude/text_completions/
+.claude/history/
+.claude/sessions/
+.claude/cache/
+*.log.tmp
+
+# ============================================================
+# 機密與金鑰（絕對不能進版本庫）
+# ============================================================
+# 環境變數（所有 .env 變體）
+.env
+.env.*
+*.env
+!.env.example
+
+# 憑證與金鑰
+*.key
+*.pem
+*.cert
+*.crt
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.ppk
+
+# 常見 token / credentials 檔案
+credentials.json
+token.json
+secrets.json
+*_token.txt
+*_secret.txt
+service_account.json
+gcp-key.json
+aws-credentials
+
+# ============================================================
+# Python 虛擬環境與暫存
+# ============================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb
+
+# ============================================================
+# 資料庫與本地資料（可能含敏感資料）
+# ============================================================
+*.sqlite
+*.sqlite3
+*.db
+
+# ============================================================
+# 前端 / Node.js（未來擴展用）
+# ============================================================
+node_modules/
+/dist
+npm-debug.log*
+yarn-error.log*
