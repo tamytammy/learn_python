@@ -109,6 +109,11 @@
   },
   "commits": [
     {
+      "hash": "cd97075",
+      "message": "chore(dashboard): 同步提交記錄至 progress.json",
+      "date": "2026-06-07"
+    },
+    {
       "hash": "291645a",
       "message": "style: 儀表板改為簡約淺色主題，新增 git 指令自動授權設定",
       "date": "2026-06-07"
