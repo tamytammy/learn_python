@@ -109,6 +109,16 @@
   },
   "commits": [
     {
+      "hash": "291645a",
+      "message": "style: 儀表板改為簡約淺色主題，新增 git 指令自動授權設定",
+      "date": "2026-06-07"
+    },
+    {
+      "hash": "12a50df",
+      "message": "feat: 新增學習歷程視覺化儀表板（GitHub Pages）",
+      "date": "2026-06-07"
+    },
+    {
       "hash": "bc92336",
       "message": "chore: 初始化 AI 協同 Python 學習專案結構",
       "date": "2026-06-07"
