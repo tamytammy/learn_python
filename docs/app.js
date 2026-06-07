@@ -71,8 +71,63 @@ function renderWeeks(weeks) {
         </div>
 
         <ul class="exercise-list">${exItems}</ul>
+
+        <button class="notes-toggle" data-week="${w.id}" aria-expanded="false">
+          <span class="notes-toggle-icon">▸</span> 本週筆記與心得
+        </button>
+        <div class="notes-panel" id="notes-panel-${w.id}" hidden></div>
       </article>`;
   }).join('');
+
+  setupNotesToggles();
+}
+
+// ── Giscus 筆記區（每週各自獨立的留言串）────────────────────────────────────
+
+const GISCUS_CONFIG = {
+  repo:        'tamytammy/learn_python',
+  repoId:      'R_kgDOSzMbUA',
+  category:    'General',
+  categoryId:  'DIC_kwDOSzMbUM4C-svF',
+};
+
+function loadGiscus(panel, weekId) {
+  const script = document.createElement('script');
+  script.src = 'https://giscus.app/client.js';
+  script.async = true;
+  script.crossOrigin = 'anonymous';
+  script.setAttribute('data-repo', GISCUS_CONFIG.repo);
+  script.setAttribute('data-repo-id', GISCUS_CONFIG.repoId);
+  script.setAttribute('data-category', GISCUS_CONFIG.category);
+  script.setAttribute('data-category-id', GISCUS_CONFIG.categoryId);
+  script.setAttribute('data-mapping', 'specific');
+  script.setAttribute('data-term', `第 ${weekId} 週筆記`);
+  script.setAttribute('data-strict', '0');
+  script.setAttribute('data-reactions-enabled', '1');
+  script.setAttribute('data-emit-metadata', '0');
+  script.setAttribute('data-input-position', 'top');
+  script.setAttribute('data-theme', 'light');
+  script.setAttribute('data-lang', 'zh-TW');
+  panel.appendChild(script);
+}
+
+function setupNotesToggles() {
+  document.querySelectorAll('.notes-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const weekId   = btn.dataset.week;
+      const panel    = document.getElementById(`notes-panel-${weekId}`);
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+      btn.setAttribute('aria-expanded', String(!expanded));
+      btn.classList.toggle('open', !expanded);
+      panel.hidden = expanded;
+
+      if (!expanded && !panel.dataset.loaded) {
+        loadGiscus(panel, weekId);
+        panel.dataset.loaded = '1';
+      }
+    });
+  });
 }
 
 function renderSkills(skills) {

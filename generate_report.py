@@ -16,8 +16,8 @@ SYLLABUS = {
         "title":    "變數與資料型態",
         "subtitle": "List & Dict 在 EDA Log 解析的應用",
         "exercises": [
-            {"id": "W1-1", "title": "DRC 違規統計",       "file": "week1/w1_1_drc_violations.py"},
-            {"id": "W1-2", "title": "Timing Path 排行榜", "file": "week1/w1_2_timing_ranking.py"},
+            {"id": "W1-1", "title": "DRC 違規統計"},
+            {"id": "W1-2", "title": "Timing Path 排行榜"},
         ],
         "skills_unlocked": {
             "python": ["list", "dict", "sorted()", "lambda"],
@@ -28,8 +28,8 @@ SYLLABUS = {
         "title":    "流程控制",
         "subtitle": "逐行讀取超大 EDA Log 的迴圈邏輯",
         "exercises": [
-            {"id": "W2-1", "title": "Timing Log 逐行掃描", "file": "week2/w2_1_log_scanner.py"},
-            {"id": "W2-2", "title": "DRC 層別錯誤計數器", "file": "week2/w2_2_layer_counter.py"},
+            {"id": "W2-1", "title": "Timing Log 逐行掃描"},
+            {"id": "W2-2", "title": "DRC 層別錯誤計數器"},
         ],
         "skills_unlocked": {
             "python": ["for/while loop", "if/elif/else", "break/continue", "streaming read"],
@@ -40,8 +40,8 @@ SYLLABUS = {
         "title":    "函數與模組",
         "subtitle": "os / sys 模組控制 Linux 環境",
         "exercises": [
-            {"id": "W3-1", "title": "EDA 報告路徑掃描器",   "file": "week3/w3_1_report_finder.py"},
-            {"id": "W3-2", "title": "環境變數驅動設定系統", "file": "week3/w3_2_env_config.py"},
+            {"id": "W3-1", "title": "EDA 報告路徑掃描器"},
+            {"id": "W3-2", "title": "環境變數驅動設定系統"},
         ],
         "skills_unlocked": {
             "python": ["def / return", "os.walk", "sys.argv", "os.environ"],
@@ -52,8 +52,8 @@ SYLLABUS = {
         "title":    "檔案讀寫與正規表示式",
         "subtitle": "re 模組高效過濾晶片設計工具報告",
         "exercises": [
-            {"id": "W4-1", "title": "Timing Violation 擷取器", "file": "week4/w4_1_timing_extractor.py"},
-            {"id": "W4-2", "title": "多工具 Log 聚合分析器",  "file": "week4/w4_2_eda_aggregator.py"},
+            {"id": "W4-1", "title": "Timing Violation 擷取器"},
+            {"id": "W4-2", "title": "多工具 Log 聚合分析器"},
         ],
         "skills_unlocked": {
             "python": ["re.compile", "re.search / findall", "with open()", "named groups"],
@@ -62,6 +62,30 @@ SYLLABUS = {
         },
     },
 }
+
+# 掃描練習代碼時忽略的目錄（避免誤判儀表板自身的程式或第三方套件）
+IGNORED_DIRS = {".git", "docs", "__pycache__", "node_modules", ".venv"}
+
+
+def find_completed_exercise_ids(root="."):
+    """掃描所有 .py 檔案內容，只要找到 'W1-1' 這類練習編號字串，就視為該題已完成。
+    這樣不論使用者把練習存成哪個檔名、放在哪個資料夾，都能被正確偵測到。"""
+    all_ids = [ex["id"] for info in SYLLABUS.values() for ex in info["exercises"]]
+    found = set()
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in IGNORED_DIRS and not d.startswith(".")]
+        for fname in filenames:
+            if not fname.endswith(".py") or fname == "generate_report.py":
+                continue
+            try:
+                with open(os.path.join(dirpath, fname), encoding="utf-8") as f:
+                    content = f.read()
+            except OSError:
+                continue
+            for ex_id in all_ids:
+                if ex_id in content:
+                    found.add(ex_id)
+    return found
 
 ALL_PENDING = [
     "list", "dict", "sorted() / lambda",
@@ -112,15 +136,14 @@ def week_status(exercises):
     return "not_started"
 
 
-def build_weeks():
+def build_weeks(completed_ids):
     rows = []
     for num, info in sorted(SYLLABUS.items()):
         exercises = [
             {
                 "id":     ex["id"],
                 "title":  ex["title"],
-                "file":   ex["file"],
-                "status": "completed" if os.path.isfile(ex["file"]) else "pending",
+                "status": "completed" if ex["id"] in completed_ids else "pending",
             }
             for ex in info["exercises"]
         ]
@@ -155,7 +178,8 @@ def build_skills(weeks):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    weeks   = build_weeks()
+    completed_ids = find_completed_exercise_ids()
+    weeks   = build_weeks(completed_ids)
     commits = get_commits()
     skills  = build_skills(weeks)
 

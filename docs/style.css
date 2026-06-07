@@ -303,6 +303,34 @@ a:hover { text-decoration: underline; }
 .ex-icon.done    { color: var(--green); }
 .ex-icon.pending { color: var(--muted-border); }
 
+/* Notes toggle + panel */
+.notes-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 14px;
+  padding-top: 12px;
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  background: none;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.notes-toggle:hover { color: var(--text); }
+.notes-toggle-icon {
+  display: inline-block;
+  color: var(--teal);
+  transition: transform 0.15s var(--ease);
+}
+.notes-toggle.open .notes-toggle-icon { transform: rotate(90deg); }
+
+.notes-panel { margin-top: 12px; }
+
 
 /* ══════════════════════════════════════════════
    SKILLS

@@ -9,19 +9,17 @@
       "id": 1,
       "title": "變數與資料型態",
       "subtitle": "List & Dict 在 EDA Log 解析的應用",
-      "status": "not_started",
+      "status": "completed",
       "exercises": [
         {
           "id": "W1-1",
           "title": "DRC 違規統計",
-          "file": "week1/w1_1_drc_violations.py",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "W1-2",
           "title": "Timing Path 排行榜",
-          "file": "week1/w1_2_timing_ranking.py",
-          "status": "pending"
+          "status": "completed"
         }
       ]
     },
@@ -34,13 +32,11 @@
         {
           "id": "W2-1",
           "title": "Timing Log 逐行掃描",
-          "file": "week2/w2_1_log_scanner.py",
           "status": "pending"
         },
         {
           "id": "W2-2",
           "title": "DRC 層別錯誤計數器",
-          "file": "week2/w2_2_layer_counter.py",
           "status": "pending"
         }
       ]
@@ -54,13 +50,11 @@
         {
           "id": "W3-1",
           "title": "EDA 報告路徑掃描器",
-          "file": "week3/w3_1_report_finder.py",
           "status": "pending"
         },
         {
           "id": "W3-2",
           "title": "環境變數驅動設定系統",
-          "file": "week3/w3_2_env_config.py",
           "status": "pending"
         }
       ]
@@ -74,25 +68,29 @@
         {
           "id": "W4-1",
           "title": "Timing Violation 擷取器",
-          "file": "week4/w4_1_timing_extractor.py",
           "status": "pending"
         },
         {
           "id": "W4-2",
           "title": "多工具 Log 聚合分析器",
-          "file": "week4/w4_2_eda_aggregator.py",
           "status": "pending"
         }
       ]
     }
   ],
   "skills": {
-    "python": [],
-    "eda": [],
+    "python": [
+      "dict",
+      "lambda",
+      "list",
+      "sorted()"
+    ],
+    "eda": [
+      "DRC violations",
+      "Timing slack"
+    ],
     "tools": [],
     "pending": [
-      "list",
-      "dict",
       "sorted() / lambda",
       "for/while loop",
       "streaming read",
@@ -108,6 +106,11 @@
     ]
   },
   "commits": [
+    {
+      "hash": "4a7a0b2",
+      "message": "feat(week1): 完成 DRC 違規統計與 Timing Path 排行榜練習",
+      "date": "2026-06-07"
+    },
     {
       "hash": "cd97075",
       "message": "chore(dashboard): 同步提交記錄至 progress.json",
