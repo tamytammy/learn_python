@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "last_updated": "2026-06-07",
+    "start_date": "2026-06-07",
+    "github_url": "https://github.com/tamytammy/learn_python"
+  },
+  "weeks": [
+    {
+      "id": 1,
+      "title": "變數與資料型態",
+      "subtitle": "List & Dict 在 EDA Log 解析的應用",
+      "status": "not_started",
+      "exercises": [
+        {
+          "id": "W1-1",
+          "title": "DRC 違規統計",
+          "file": "week1/w1_1_drc_violations.py",
+          "status": "pending"
+        },
+        {
+          "id": "W1-2",
+          "title": "Timing Path 排行榜",
+          "file": "week1/w1_2_timing_ranking.py",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "流程控制",
+      "subtitle": "逐行讀取超大 EDA Log 的迴圈邏輯",
+      "status": "not_started",
+      "exercises": [
+        {
+          "id": "W2-1",
+          "title": "Timing Log 逐行掃描",
+          "file": "week2/w2_1_log_scanner.py",
+          "status": "pending"
+        },
+        {
+          "id": "W2-2",
+          "title": "DRC 層別錯誤計數器",
+          "file": "week2/w2_2_layer_counter.py",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "函數與模組",
+      "subtitle": "os / sys 模組控制 Linux 環境",
+      "status": "not_started",
+      "exercises": [
+        {
+          "id": "W3-1",
+          "title": "EDA 報告路徑掃描器",
+          "file": "week3/w3_1_report_finder.py",
+          "status": "pending"
+        },
+        {
+          "id": "W3-2",
+          "title": "環境變數驅動設定系統",
+          "file": "week3/w3_2_env_config.py",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "檔案讀寫與正規表示式",
+      "subtitle": "re 模組高效過濾晶片設計工具報告",
+      "status": "not_started",
+      "exercises": [
+        {
+          "id": "W4-1",
+          "title": "Timing Violation 擷取器",
+          "file": "week4/w4_1_timing_extractor.py",
+          "status": "pending"
+        },
+        {
+          "id": "W4-2",
+          "title": "多工具 Log 聚合分析器",
+          "file": "week4/w4_2_eda_aggregator.py",
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "skills": {
+    "python": [],
+    "eda": [],
+    "tools": [],
+    "pending": [
+      "list",
+      "dict",
+      "sorted() / lambda",
+      "for/while loop",
+      "streaming read",
+      "def / return",
+      "os.walk",
+      "sys.argv",
+      "re.compile",
+      "re.search",
+      "Timing Analysis",
+      "DRC",
+      "Routing",
+      "Log aggregation"
+    ]
+  },
+  "commits": [
+    {
+      "hash": "bc92336",
+      "message": "chore: 初始化 AI 協同 Python 學習專案結構",
+      "date": "2026-06-07"
+    }
+  ]
+}

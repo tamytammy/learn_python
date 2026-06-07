@@ -146,13 +146,20 @@ Claude 在此專案中扮演「資深 Tech Lead 兼 AI 導師」角色。
 ### `@save` — 智慧 Git 提交
 **觸發後自動執行步驟：**
 ```
-1. 執行 git status 檢查當前狀態
+1. 執行 git status 確認變更狀態
 2. 執行 git diff 了解修改內容
-3. 分析修改，推斷本次提交的語意
-4. 執行 git add . 加入所有變更
-5. 撰寫符合 Conventional Commits 規範的中文 commit message
-6. 執行 git commit
-7. 回報提交結果
+3. 【安全檢查】確認 git status 暫存區中沒有 .env*、*.key、settings.local.json 等敏感檔案
+4. 執行 python generate_report.py 更新 docs/data/progress.json（使用 C:\Users\User\.local\bin\python3.14.exe）
+5. 分析修改內容，推斷本次提交的語意
+6. 執行 git add . 加入所有變更（含更新後的 progress.json）
+7. 撰寫符合 Conventional Commits 規範的中文 commit message
+8. 執行 git commit
+9. 回報提交結果
+```
+
+**Python 執行指令（Windows 環境）：**
+```
+C:\Users\User\.local\bin\python3.14.exe generate_report.py
 ```
 
 **Commit Message 規範（中文版）：**
@@ -184,15 +191,15 @@ feat(week2): 完成逐行讀取 DRC log 的練習
 ### `@push` — 安全推送至 GitHub
 **觸發後自動執行步驟：**
 ```
-1. 執行 @save 的完整流程（完成本地提交）
-2. 執行 git remote -v 確認遠端設定正確
+1. 執行 @save 的完整流程（含 generate_report.py 更新儀表板資料）
+2. 執行 git remote -v 確認遠端是 https://github.com/tamytammy/learn_python.git
 3. 執行 git push origin main
-4. 回報推送結果與 GitHub 倉庫連結
+4. 回報推送結果並附上儀表板連結：https://tamytammy.github.io/learn_python
 ```
 
 **安全檢查清單（推送前自動驗證）：**
-- [ ] 確認沒有 `.env` 或包含密鑰的檔案被加入
-- [ ] 確認推送目標是 `origin main`，而非其他分支
+- [ ] git status 確認沒有 `.env*`、`*.key`、`settings.local.json` 等敏感檔案
+- [ ] 推送目標確認是 `origin main`
 - [ ] 若 push 被拒絕（non-fast-forward），先執行 `git pull --rebase` 再重試
 
 ---
